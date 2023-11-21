@@ -1,0 +1,13 @@
+<!-- image_urls.html -->
+{% if image_urls %}
+<h2>Uploaded Image URLs:</h2>
+<ul>
+    {% for image_url in image_urls %}
+        <a href='{{ image_url }}'><li>{{ image_url }}</li></a>
+    {% endfor %}
+</ul>
+{% elif message %}
+    <p>{{ message }}</p>
+{% else %}
+    <p>{{ error }}</p>
+{% endif %}
