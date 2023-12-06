@@ -14,8 +14,8 @@ class TrackedCreateAPIView(CreateAPIView):
 
 class GetTrackedAPIView(APIView):
     def get(self, request, *args, **kwargs):
-        mxid = self.kwargs.get('mxid')
-        data = Tracked.objects.filter(mxid=mxid).order_by('-id')
+        Cam_MxID = self.kwargs.get('Cam_MxID')
+        data = Tracked.objects.filter(Cam_MxID=Cam_MxID).order_by('-id')
         serializer = ResultSerializer(data, many=True)
         return Response(serializer.data)
         

@@ -11,9 +11,9 @@ from ..serializers import StreamPhotoSerializer
 class StreamPhotoUpdateView(APIView):
     def post(self, request, *args, **kwargs):
         data = request.data 
-        mxid=self.kwargs.get('mxid')   
+        Cam_MxID=self.kwargs.get('Cam_MxID')   
         try:
-            camera = StreamPhoto.objects.get(mxid=mxid)
+            camera = StreamPhoto.objects.get(Cam_MxID=Cam_MxID)
             serializer = StreamPhotoSerializer(instance=camera, data=request.data, partial=True)
             if serializer.is_valid():
                 serializer.save()
@@ -23,7 +23,7 @@ class StreamPhotoUpdateView(APIView):
         except:
             dt = {
                 'image': data['image'],
-                'mxid': mxid
+                'Cam_MxID': Cam_MxID
             }
             serializer = StreamPhotoSerializer(data=dt)
             if serializer.is_valid():
@@ -33,8 +33,8 @@ class StreamPhotoUpdateView(APIView):
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, *args, **kwargs):
-        mxid = self.kwargs.get('mxid')
-        camera = StreamPhoto.objects.get(mxid=mxid)
+        Cam_MxID = self.kwargs.get('Cam_MxID')
+        camera = StreamPhoto.objects.get(Cam_MxID=Cam_MxID)
         serialized = StreamPhotoSerializer(camera)
         return Response(serialized.data)
  

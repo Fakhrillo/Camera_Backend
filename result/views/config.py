@@ -5,14 +5,13 @@ from rest_framework.response import Response
 from rest_framework.generics import RetrieveAPIView, UpdateAPIView
 
 
-
 class ConfigurationPostAPIView(APIView):
     serializer_class = ConfigSerializer
     
     def post(self, request, *args, **kwargs):
         data = request.data
-        mxid = data.get('mxid')
-        config = ConfigParameter.objects.filter(mxid=mxid).first()
+        Cam_MxID = data.get('Cam_MxID')
+        config = ConfigParameter.objects.filter(Cam_MxID=Cam_MxID).first()
         if config:
             serialized = self.serializer_class(config, data=data, partial=True)
             if serialized.is_valid():
@@ -33,11 +32,11 @@ class GetConfigurationsAPIView(RetrieveAPIView):
     serializer_class = ConfigSerializer
     queryset = ConfigParameter.objects.all()
 
-    lookup_field = 'mxid'
+    lookup_field = 'Cam_MxID'
     
 
 class UpdateConfigAPIView(UpdateAPIView):
     serializer_class = ConfigSerializer
     queryset = ConfigParameter.objects.all()
 
-    lookup_field = 'mxid'
+    lookup_field = 'Cam_MxID'

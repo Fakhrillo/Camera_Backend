@@ -9,6 +9,6 @@ def new_config(sender, instance, **kwargs):
     mqttBroker = "broker.emqx.io"
     client = mqtt.Client("Backend")
     client.connect(mqttBroker)
-    client.publish(f"CONFIGURATION_{instance.mxid}", "update")
-    print(instance.mxid)
+    client.publish(f"CONFIGURATION_{instance.Cam_MxID}", "update")
+    print(instance.Cam_MxID)
     print("signal")
