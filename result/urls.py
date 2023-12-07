@@ -8,8 +8,8 @@ from .views.photostream import *
 urlpatterns = [
     path('result/', TrackedCreateAPIView.as_view()),
     path('images/', get_image_urls, name='get_image_urls'),
-    path('tracked/<str:mxid>', GetTrackedAPIView.as_view()),
+    path('tracked/<str:Cam_MxID>', GetTrackedAPIView.as_view()),
     path('config/post/', ConfigurationPostAPIView.as_view()),
-    path('photo/<str:mxid>', StreamPhotoUpdateView.as_view()),
-    path('conf/<str:mxid>/', GetConfigurationsAPIView.as_view()),
+    path('photo/<str:Cam_MxID>', StreamPhotoUpdateView.as_view()),
+    path('conf/<str:Cam_MxID>/', GetConfigurationsAPIView.as_view()),
 ]
