@@ -22,7 +22,7 @@ class ConfigParameter(admin.ModelAdmin):
 
 @admin.register(Tracked)
 class TrackedModel(admin.ModelAdmin):
-    list_display = ('Cam_MxID', 'incoming', 'outgoing', 'present', 'created_at',)
+    list_display = ('Cam_MxID', 'incoming', 'outgoing', 'created_at',)
 
     search_fields = ('id', 'Cam_MxID')
 

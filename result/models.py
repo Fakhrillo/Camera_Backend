@@ -5,7 +5,6 @@ class Tracked(models.Model):
     Cam_MxID = models.CharField(max_length=50)
     incoming = models.IntegerField()
     outgoing = models.IntegerField()
-    present = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
