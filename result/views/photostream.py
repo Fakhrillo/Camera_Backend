@@ -10,13 +10,13 @@ from django.utils import timezone
 
 class StreamPhotoUpdateView(APIView):
     def post(self, request, *args, **kwargs):
-        data = request.data 
+        data = request.data
         Cam_MxID=self.kwargs.get('Cam_MxID')   
         try:
             camera = StreamPhoto.objects.get(Cam_MxID=Cam_MxID)
-            serializer = StreamPhotoSerializer(instance=camera, data=request.data, partial=True)
+            serializer = StreamPhotoSerializer(instance=camera, data=data, partial=True)
             if serializer.is_valid():
-                serializer.save()
+                serializer.save(posted_on=timezone.now())
                 return Response({'detail':'Updated successfully'}, status=status.HTTP_200_OK)
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -24,7 +24,6 @@ class StreamPhotoUpdateView(APIView):
             dt = {
                 'image': data['image'],
                 'Cam_MxID': Cam_MxID,
-                'posted_on': timezone.now()
             }
             serializer = StreamPhotoSerializer(data=dt)
             if serializer.is_valid():
