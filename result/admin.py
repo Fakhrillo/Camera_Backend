@@ -6,7 +6,7 @@ admin.site.unregister(Group)
 
 @admin.register(StreamPhoto)
 class StreamPhoto(admin.ModelAdmin):
-    list_display = ('id', 'Cam_MxID', 'image')
+    list_display = ('id', 'Cam_MxID', 'image', 'posted_on')
     list_display_links = ['id', 'Cam_MxID']
     search_fields = ('id', 'Cam_MxID')
     list_filter = ['Cam_MxID']

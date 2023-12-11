@@ -14,6 +14,7 @@ class Tracked(models.Model):
 class StreamPhoto(models.Model):
     Cam_MxID = models.CharField(max_length=50)
     image = models.ImageField(upload_to='media/')
+    posted_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return self.Cam_MxID
