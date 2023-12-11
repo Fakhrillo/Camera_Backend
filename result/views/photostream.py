@@ -6,7 +6,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from ..serializers import StreamPhotoSerializer
-
+from django.utils import timezone
 
 class StreamPhotoUpdateView(APIView):
     def post(self, request, *args, **kwargs):
@@ -23,7 +23,8 @@ class StreamPhotoUpdateView(APIView):
         except:
             dt = {
                 'image': data['image'],
-                'Cam_MxID': Cam_MxID
+                'Cam_MxID': Cam_MxID,
+                'posted_on': timezone.now()
             }
             serializer = StreamPhotoSerializer(data=dt)
             if serializer.is_valid():
