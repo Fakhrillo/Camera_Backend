@@ -3,8 +3,6 @@ from .views.config import *
 from django.urls import path
 from .views.photostream import *
 
-
-
 urlpatterns = [
     path('result/', TrackedCreateAPIView.as_view()),
     path('images/', get_image_urls, name='get_image_urls'),
