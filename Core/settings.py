@@ -1,5 +1,6 @@
 import os
 from environs import Env
+from datetime import timedelta
 
 from pathlib import Path
 
@@ -8,7 +9,6 @@ env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -36,11 +36,13 @@ INSTALLED_APPS = [
     'result',
     'coreapi',
     "corsheaders",
+    'rest_framework_simplejwt',
 
 ]
 
 REST_FRAMEWORK = {
    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+   'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework_simplejwt.authentication.JWTAuthentication'],
 }
 
 MIDDLEWARE = [
@@ -142,6 +144,10 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_DEFAULT_ACL = 'public-read'
 
 AWS_LOCATION = 'static'
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=5),
+}
 
 
 JAZZMIN_SETTINGS = {

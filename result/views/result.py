@@ -3,9 +3,9 @@ from rest_framework.views import APIView
 from ..serializers import ResultSerializer
 from rest_framework.response import Response 
 from rest_framework.generics import  CreateAPIView
-# Create your views here.
 
-
+from rest_framework_simplejwt.authentication import  JWTAuthentication
+from rest_framework.permissions import IsAdminUser
 
 class TrackedCreateAPIView(CreateAPIView):
     serializer_class = ResultSerializer
@@ -13,6 +13,9 @@ class TrackedCreateAPIView(CreateAPIView):
 
 
 class GetTrackedAPIView(APIView):
+    permission_classes = [IsAdminUser]
+    authentication_classes = [JWTAuthentication]
+
     def get(self, request, *args, **kwargs):
         Cam_MxID = self.kwargs.get('Cam_MxID')
         data = Tracked.objects.filter(Cam_MxID=Cam_MxID).order_by('-id')

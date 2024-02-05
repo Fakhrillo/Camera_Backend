@@ -4,8 +4,14 @@ from ..serializers import ConfigSerializer
 from rest_framework.response import Response
 from rest_framework.generics import RetrieveAPIView, UpdateAPIView
 
+from rest_framework_simplejwt.authentication import  JWTAuthentication
+from rest_framework.permissions import IsAdminUser
+
 
 class ConfigurationPostAPIView(APIView):
+    permission_classes = [IsAdminUser]
+    authentication_classes = [JWTAuthentication]
+
     serializer_class = ConfigSerializer
     
     def post(self, request, *args, **kwargs):
@@ -29,6 +35,9 @@ class ConfigurationPostAPIView(APIView):
 
 
 class GetConfigurationsAPIView(RetrieveAPIView):
+    permission_classes = [IsAdminUser]
+    authentication_classes = [JWTAuthentication]
+
     serializer_class = ConfigSerializer
     queryset = ConfigParameter.objects.all()
 
@@ -36,6 +45,9 @@ class GetConfigurationsAPIView(RetrieveAPIView):
     
 
 class UpdateConfigAPIView(UpdateAPIView):
+    permission_classes = [IsAdminUser]
+    authentication_classes = [JWTAuthentication]
+
     serializer_class = ConfigSerializer
     queryset = ConfigParameter.objects.all()
 
