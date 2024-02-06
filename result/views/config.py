@@ -35,8 +35,6 @@ class ConfigurationPostAPIView(APIView):
 
 
 class GetConfigurationsAPIView(RetrieveAPIView):
-    permission_classes = [IsAdminUser]
-    authentication_classes = [JWTAuthentication]
 
     serializer_class = ConfigSerializer
     queryset = ConfigParameter.objects.all()
