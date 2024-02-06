@@ -31,7 +31,7 @@ class GetTrackedAPIView(APIView):
             end_date = datetime.combine(today, datetime.max.time())
         else:
             start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
-            end_date = datetime.strptime(end_date_str, '%Y-%m-%d')
+            end_date = datetime.strptime(end_date_str, '%Y-%m-%d') + timedelta(days=1)
 
         data = Tracked.objects.filter(Cam_MxID=Cam_MxID, created_at__range=(start_date, end_date)).order_by('-id')
         
