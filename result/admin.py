@@ -26,4 +26,4 @@ class TrackedModel(admin.ModelAdmin):
 
     search_fields = ('id', 'Cam_MxID')
 
-    list_filter = ['Cam_MxID']
+    list_filter = ['Cam_MxID', 'created_at']
