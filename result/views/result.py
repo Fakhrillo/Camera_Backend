@@ -42,7 +42,7 @@ class GetTrackedAPIView(APIView):
 
 class GetLastTrackedAPIView(APIView):
     def get(self, request, *args, **kwargs):
-        Cam_MxID = self.kwargs.get('Cam_MxID')
+        Cam_MxID = request.query_params.get('Cam_MxID')
 
         if not Cam_MxID:
             return Response({'error': 'Missing Cam_MxID parameter'}, status=HTTP_400_BAD_REQUEST)
