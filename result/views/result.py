@@ -2,6 +2,7 @@ from ..models import Tracked
 from rest_framework.views import APIView
 from ..serializers import ResultSerializer
 from rest_framework.response import Response 
+from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND
 from rest_framework.generics import  CreateAPIView
 
 from datetime import datetime, timedelta
@@ -42,10 +43,15 @@ class GetTrackedAPIView(APIView):
 class GetLastTrackedAPIView(APIView):
     def get(self, request, *args, **kwargs):
         Cam_MxID = self.kwargs.get('Cam_MxID')
-        
-        last_tracked_object = Tracked.objects.filter(Cam_MxID=Cam_MxID).latest('created_at')
 
-        # Use many=False since you're expecting a single object
+        if not Cam_MxID:
+            return Response({'error': 'Missing Cam_MxID parameter'}, status=HTTP_400_BAD_REQUEST)
+
+        try:
+            last_tracked_object = Tracked.objects.filter(Cam_MxID=Cam_MxID).latest('created_at')
+        except:
+            return Response({'error': 'No tracked object found for Cam_MxID: {}'.format(Cam_MxID)}, status=HTTP_404_NOT_FOUND)
+
         data = ResultSerializer(last_tracked_object).data
 
         return Response(data)
