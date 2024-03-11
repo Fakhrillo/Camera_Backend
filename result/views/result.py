@@ -38,3 +38,13 @@ class GetTrackedAPIView(APIView):
         serializer = ResultSerializer(data, many=True)
         return Response(serializer.data)
         
+
+class GetLastTrackedAPIView(APIView):
+    def get(self, request, *args, **kwargs):
+        Cam_MxID = self.kwargs.get('Cam_MxID')
+        
+        last_tracked_object = Tracked.objects.filter(Cam_MxID=Cam_MxID).latest('created_at')
+
+        data = ResultSerializer(last_tracked_object, many=True)
+
+        return Response(data)
