@@ -45,6 +45,7 @@ class GetLastTrackedAPIView(APIView):
         
         last_tracked_object = Tracked.objects.filter(Cam_MxID=Cam_MxID).latest('created_at')
 
-        data = ResultSerializer(last_tracked_object, many=True)
+        # Use many=False since you're expecting a single object
+        data = ResultSerializer(last_tracked_object).data
 
         return Response(data)
