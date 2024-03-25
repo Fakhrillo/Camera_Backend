@@ -9,8 +9,6 @@ from rest_framework.permissions import IsAdminUser
 
 
 class ConfigurationPostAPIView(APIView):
-    permission_classes = [IsAdminUser]
-    authentication_classes = [JWTAuthentication]
 
     serializer_class = ConfigSerializer
     

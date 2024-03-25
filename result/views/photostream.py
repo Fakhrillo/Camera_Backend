@@ -12,8 +12,6 @@ from rest_framework_simplejwt.authentication import  JWTAuthentication
 from rest_framework.permissions import IsAdminUser
 
 class StreamPhotoUpdateView(APIView):
-    permission_classes = [IsAdminUser]
-    authentication_classes = [JWTAuthentication]
     def post(self, request, *args, **kwargs):
         data = request.data
         Cam_MxID=self.kwargs.get('Cam_MxID')   
