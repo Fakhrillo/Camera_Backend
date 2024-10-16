@@ -136,14 +136,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-AWS_ACCESS_KEY_ID = env('ACCESS_KEY')
-AWS_SECRET_ACCESS_KEY = env('SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = env('BUCKET_NAME')
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# AWS_ACCESS_KEY_ID = env('ACCESS_KEY')
+# AWS_SECRET_ACCESS_KEY = env('SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = env('BUCKET_NAME')
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
-AWS_DEFAULT_ACL = 'public-read'
+# AWS_DEFAULT_ACL = 'public-read'
 
-AWS_LOCATION = 'static'
+# AWS_LOCATION = 'static'
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
